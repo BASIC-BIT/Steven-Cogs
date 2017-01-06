@@ -34,7 +34,7 @@ class Mycog:
         items = ctx.message.content
 
         items_split = items.split(" ")
-        items_rejoin = " ".items_split[1:]
+        items_rejoin = " ".join(items_split[1:])
 
         params = {'raw_textarea': items_rejoin, 'market': '30000142', 'load_full': '1'}
         await self.bot.say(items_rejoin)
