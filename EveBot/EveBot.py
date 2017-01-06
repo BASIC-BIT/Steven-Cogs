@@ -31,8 +31,8 @@ class Mycog:
         #Your code will go here
         url = "http://evepraisal.com/estimate" #build the web adress
 
-        params = {'raw_textarea': "\t".join(args), 'market': '30000142', 'load_full': '1'}
-        await self.bot.say("\t".join(args))
+        params = {'raw_textarea': "".join(args), 'market': '30000142', 'load_full': '1'}
+        await self.bot.say("".join(args))
         async with aiohttp.ClientSession() as session:
             async with session.post(url,
                                    data=params) as response:
