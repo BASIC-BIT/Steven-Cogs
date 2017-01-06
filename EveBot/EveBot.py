@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+import aiohttp
 
 class Mycog:
     """My custom cog that does stuff!"""
@@ -25,14 +26,15 @@ class Mycog:
         url = "http://evepraisal.com/estimate/post" #build the web adress
 
         params = {'raw_textarea': ' '.join(text[0::len(text)]), 'market': '30000142', 'load_full': '1'}
-        async with session.get(url,
-                               params=params) as response:
-            soupObject = BeautifulSoup(await response.text(), "html.parser")
-        try:
-            results = soupObject.find(id='results').get_text()
-            await self.bot.say(results)
-        except:
-            await self.bot.say("Failed.")
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url,
+                                   params=params) as response:
+                soupObject = BeautifulSoup(await response.text(), "html.parser")
+            try:
+                results = soupObject.find(id='results').get_text()
+                await self.bot.say(results)
+            except:
+                await self.bot.say("Failed.")
 
 
 
