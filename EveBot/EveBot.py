@@ -45,8 +45,6 @@ class Mycog:
             try:
                 results = soupObject.find(id='results').tfoot.get_text()
                 #results = soupObject.body.get_text()
-                results = results.replace('\n', ' ')
-                results = results.replace('\t', ' ')
                 whitelist = set('abcdefghijklmnopqrstuvwxy ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890\.')
                 results = ''.join(filter(whitelist.__contains__, results))
                 results_split = results.split(' ')
