@@ -48,7 +48,7 @@ class Mycog:
                 results = results.replace('\n', ' ')
                 results = results.replace('\t', ' ')
                 results_split = results.split(' ')
-                results_joined = ' '.join(results_split[0::3]) + ': ' + results_split[8] + '\n' + ' '.join(results_split[3::6]) + ': ' + results_split[9] + '\n' + ' '.join(results_split[6::8]) + ': ' + results_split[10]
+                results_joined = ' '.join(results_split[0::3]) + ': ' + results_split[3] + '\n' + ' '.join(results_split[4::7]) + ': ' + results_split[7] + '\n' + ' '.join(results_split[8::10]) + ': ' + results_split[10]
                 await self.bot.say(' \n' + results_joined)
             except:
                 await self.bot.say("Failed.")
