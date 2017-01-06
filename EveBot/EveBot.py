@@ -57,7 +57,7 @@ class Mycog:
                 buyvalue = results_split[10].split('.',1)[0]
                 sizem = results_split[11]
                 sizem = size.replace('m3','')
-                results_joined = ' '.join(results_split[1:4]) + ':\t' + "{:,}".format(float(sellvalue)) + ' isk\n' + ' '.join(results_split[4:7]) + ':\t' + "{:,}".format(float(buyvalue)) + ' isk\n' + ' '.join(results_split[7:9]) + ':\t' + "{:,.2f}".format(float(sizem))+" m3"
+                results_joined = ' '.join(results_split[1:4]) + ':\t' + "{:,.0f}".format(float(sellvalue)) + ' isk\n' + ' '.join(results_split[4:7]) + ':\t' + "{:,.0f}".format(float(buyvalue)) + ' isk\n' + ' '.join(results_split[7:9]) + ':\t' + "{:,.2f}".format(float(sizem))+" m3"
                 await self.bot.say('Results: \n' + results_joined)
             except:
                 await self.bot.say("Failed.")
