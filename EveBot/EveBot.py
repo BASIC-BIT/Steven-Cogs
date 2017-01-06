@@ -52,6 +52,7 @@ class Mycog:
                 for counter in range(1,100):
                     results = results.replace('  ', ' ')
                 results_split = results.split(' ')
+                results_joined = ' '.join(results_split[1:4]) + ': ' + results_split[9] + '\n' + ' '.join(results_split[4:7]) + ': ' + results_split[10] + '\n' + ' '.join(results_split[7:9]) + ': ' + results_split[11]
                 await self.bot.say(' \n' + results_joined)
             except:
                 await self.bot.say("Failed.")
