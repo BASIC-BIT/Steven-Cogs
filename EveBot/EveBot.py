@@ -2,6 +2,12 @@ import discord
 from discord.ext import commands
 import aiohttp
 
+try: # check if BeautifulSoup4 is installed
+    from bs4 import BeautifulSoup
+    soupAvailable = True
+except:
+    soupAvailable = False
+
 class Mycog:
     """My custom cog that does stuff!"""
 
@@ -39,4 +45,7 @@ class Mycog:
 
 
 def setup(bot):
-    bot.add_cog(Mycog(bot))
+    if soupAvailable:
+        bot.add_cog(Mycog(bot))
+    else:
+        raise RuntimeError("You need to run `pip3 install beautifulsoup4`")
