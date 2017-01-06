@@ -37,7 +37,7 @@ class Mycog:
         items_rejoin = " ".join(items_split[1:])
 
         params = {'raw_paste': items_rejoin, 'market': '30000142'}
-        await self.bot.say(items_rejoin)
+        #await self.bot.say(items_rejoin)
         async with aiohttp.ClientSession() as session:
             async with session.post(url,
                                    data=params) as response:
@@ -45,7 +45,10 @@ class Mycog:
             try:
                 results = soupObject.find(id='results').tfoot.get_text()
                 #results = soupObject.body.get_text()
-                await self.bot.say(results)
+
+                results_split = results.split(' ')
+                results_joined = ' '.join(results_split[0::3])+': ' results_split[8]+'\n'+results_split[3::6])+': ' results_split[9]+'\n'results_split[6::8])+': ' results_split[10]
+                await self.bot.say(' \n' + results_joined)
             except:
                 await self.bot.say("Failed.")
 
