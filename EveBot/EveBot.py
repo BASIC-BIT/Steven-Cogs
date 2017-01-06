@@ -49,12 +49,8 @@ class Mycog:
                 results = results.replace('\t', ' ')
                 whitelist = set('abcdefghijklmnopqrstuvwxy ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890\.')
                 results = ''.join(filter(whitelist.__contains__, results))
-                results = results.replace('  ', ' ')
-                results = results.replace('  ', ' ')
-                results = results.replace('  ', ' ')
-                results = results.replace('  ', ' ')
-                results = results.replace('  ', ' ')
-                results = results.replace('  ', ' ')
+                for counter in range(1,100):
+                    results = results.replace('  ', ' ')
                 results_split = results.split(' ')
                 results_joined = ' '.join(results_split[0:3]) + ': ' + results_split[3] + '\n' + ' '.join(results_split[4:7]) + ': ' + results_split[7] + '\n' + ' '.join(results_split[8:10]) + ': ' + results_split[10]
                 await self.bot.say(' \n' + results_joined)
