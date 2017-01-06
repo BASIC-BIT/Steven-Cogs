@@ -32,7 +32,7 @@ class Mycog:
         url = "http://evepraisal.com/estimate" #build the web adress
 
         params = {'raw_textarea': '\t'.join(text[1:]), 'market': '30000142', 'load_full': '1'}
-        self.bot.say('\t'.join(text[1::len(text)]))
+        self.bot.say('\t'.join(text[1:]))
         async with aiohttp.ClientSession() as session:
             async with session.post(url,
                                    data=params) as response:
