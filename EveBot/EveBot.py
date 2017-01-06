@@ -45,9 +45,10 @@ class Mycog:
                 soupObject = BeautifulSoup(await response.text(), "html.parser")
             try:
                 results = soupObject.find(id='results').tfoot.get_text()
+                link = soupObject.find(id='result_container').siblings[1].siblings[1].a.get_text()
                 #results = soupObject.body.get_text()
                 results = results.replace('\n', ' ')
-                results = results.replace('\t', ' ')
+                resultsLink = results.replace('\t', ' ')
                 whitelist = set('abcdefghijklmnopqrstuvwxy ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890\.')
                 results = ''.join(filter(whitelist.__contains__, results))
                 for counter in range(1,100):
@@ -58,7 +59,7 @@ class Mycog:
                 sizem = results_split[11]
                 sizem = sizem.replace('m3','')
                 results_joined = ' '.join(results_split[1:4]) + ':\t' + "{:,.2f}".format(float(sellvalue)) + ' isk\n' + ' '.join(results_split[4:7]) + ':\t' + "{:,.2f}".format(float(buyvalue)) + ' isk\n' + ' '.join(results_split[7:9]) + ':\t\t' + "{:,.2f}".format(float(sizem)) + " m3"
-                await self.bot.say('Results: \n' + results_joined)
+                await self.bot.say('Link: ' + resultsLink +'\n' + results_joined)
             except:
                 await self.bot.say("Failed.")
 
