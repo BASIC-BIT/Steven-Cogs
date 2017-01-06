@@ -37,7 +37,8 @@ class Mycog:
                                    data=params) as response:
                 soupObject = BeautifulSoup(await response.text(), "html.parser")
             try:
-                results = soupObject.find(id='help-modal').get_text()
+                #results = soupObject.find(id='results').get_text()
+                //results = soupObject.select("body").get_text()
                 await self.bot.say(results)
             except:
                 await self.bot.say("Failed.")
