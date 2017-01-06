@@ -25,7 +25,7 @@ class Mycog:
 
 
     @commands.command(pass_context=True)
-    async def evepraisal(self, ctx, *args):
+    async def evepraisal(self, ctx, args):
         """Run evepraisal and spit out result"""
 
         #Your code will go here
