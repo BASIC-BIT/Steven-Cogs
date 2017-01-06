@@ -45,7 +45,8 @@ class Mycog:
             try:
                 results = soupObject.find(id='results').tfoot.get_text()
                 #results = soupObject.body.get_text()
-
+                results = results.replace('\n', ' ')
+                results = results.replace('\t', ' ')
                 results_split = results.split(' ')
                 results_joined = ' '.join(results_split[0::3]) + ': ' + results_split[8] + '\n' + ' '.join(results_split[3::6]) + ': ' + results_split[9] + '\n' + ' '.join(results_split[6::8]) + ': ' + results_split[10]
                 await self.bot.say(' \n' + results_joined)
