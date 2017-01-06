@@ -25,14 +25,14 @@ class Mycog:
 
 
     @commands.command(pass_context=True)
-    async def evepraisal(self, ctx, args):
+    async def evepraisal(self, ctx):
         """Run evepraisal and spit out result"""
 
         #Your code will go here
         url = "http://evepraisal.com/estimate" #build the web adress
 
-        params = {'raw_textarea': args, 'market': '30000142', 'load_full': '1'}
-        await self.bot.say(args)
+        params = {'raw_textarea': ctx.message.content, 'market': '30000142', 'load_full': '1'}
+        await self.bot.say(ctx.message.content)
         async with aiohttp.ClientSession() as session:
             async with session.post(url,
                                    data=params) as response:
