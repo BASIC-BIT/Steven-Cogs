@@ -2,7 +2,6 @@ import discord
 from discord.ext import commands
 import aiohttp
 import locale
-import html5lib
 
 try: # check if BeautifulSoup4 is installed
     from bs4 import BeautifulSoup
@@ -43,10 +42,10 @@ class Mycog:
         async with aiohttp.ClientSession() as session:
             async with session.post(url,
                                    data=params) as response:
-                soupObject = BeautifulSoup(await response.text(), "html5lib")
+                soupObject = BeautifulSoup(await response.text(), "html.parser")
             try:
                 results = soupObject.find(id='results').tfoot.get_text()
-                resultsLink = soupObject.find('a[href*="evepraisal.com/e/"]')
+                resultsLink = soupObject.select('a[href*="evepraisal.com/e/"]')
                 results = results.replace('\n', ' ')
                 results = results.replace('\t', ' ')
                 whitelist = set('abcdefghijklmnopqrstuvwxy ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890\.')
