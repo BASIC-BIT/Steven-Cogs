@@ -45,7 +45,7 @@ class Mycog:
                 soupObject = BeautifulSoup(await response.text(), "html.parser")
             try:
                 results = soupObject.find(id='results').tfoot.get_text()
-                resultsLink = soupObject.find(id='result_container').a.contents
+                resultsLink = soupObject.select('a[href*="evepraisal.com/e/"]').get_text()
                 results = results.replace('\n', ' ')
                 results = results.replace('\t', ' ')
                 whitelist = set('abcdefghijklmnopqrstuvwxy ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890\.')
