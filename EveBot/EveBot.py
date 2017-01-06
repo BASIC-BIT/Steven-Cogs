@@ -47,7 +47,8 @@ class Mycog:
                 #results = soupObject.body.get_text()
 
                 results_split = results.split(' ')
-                results_joined = ' '.join(results_split[0::3])+': ' results_split[8]+'\n'+results_split[3::6])+': ' results_split[9]+'\n'results_split[6::8])+': ' results_split[10]
+                results_joined = ' '.join(results_split[0::3]) + ': ' + results_split[8] + '\n' + 
+                ' '.join(results_split[3::6]) + ': ' + results_split[9] + '\n' + ' '.join(results_split[6::8]) + ': ' + results_split[10]
                 await self.bot.say(' \n' + results_joined)
             except:
                 await self.bot.say("Failed.")
