@@ -43,7 +43,7 @@ class Mycog:
                                    data=params) as response:
                 soupObject = BeautifulSoup(await response.text(), "html.parser")
             try:
-                results = soupObject.find(id='results').find_all('trfoot').get_text()
+                results = soupObject.find(id='results').trfoot.get_text()
                 #results = soupObject.body.get_text()
                 await self.bot.say(results)
             except:
