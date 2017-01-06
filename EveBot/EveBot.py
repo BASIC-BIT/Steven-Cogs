@@ -29,12 +29,12 @@ class Mycog:
         """Run evepraisal and spit out result"""
 
         #Your code will go here
-        url = "http://evepraisal.com/estimate/post" #build the web adress
+        url = "http://evepraisal.com/estimate" #build the web adress
 
         params = {'raw_textarea': ' '.join(text[0::len(text)]), 'market': '30000142', 'load_full': '1'}
         async with aiohttp.ClientSession() as session:
-            async with session.get(url,
-                                   params=params) as response:
+            async with session.post(url,
+                                   data=params) as response:
                 soupObject = BeautifulSoup(await response.text(), "html.parser")
             try:
                 results = soupObject.find(id='results').get_text()
