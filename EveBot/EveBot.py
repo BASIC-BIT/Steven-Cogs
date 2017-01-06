@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import aiohttp
+import locale
 
 try: # check if BeautifulSoup4 is installed
     from bs4 import BeautifulSoup
@@ -52,7 +53,7 @@ class Mycog:
                 for counter in range(1,100):
                     results = results.replace('  ', ' ')
                 results_split = results.split(' ')
-                results_joined = ' '.join(results_split[1:4]) + ': ' + "{:,.2f}".format(results_split[9]) + ' isk\n' + ' '.join(results_split[4:7]) + ': ' + "{:,.2f}".format(results_split[10]) + ' isk\n' + ' '.join(results_split[7:9]) + ': ' + "{:,.2f}".format(results_split[11])
+                results_joined = ' '.join(results_split[1:4]) + ': ' + "{:,.2f}".format(float(results_split[9])) + ' isk\n' + ' '.join(results_split[4:7]) + ': ' + "{:,.2f}".format(float(results_split[10])) + ' isk\n' + ' '.join(results_split[7:9]) + ': ' + results_split[11]
                 await self.bot.say('Results: \n' + results_joined)
             except:
                 await self.bot.say("Failed.")
