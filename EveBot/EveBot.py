@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import aiohttp
 import locale
+import html5lib
 
 try: # check if BeautifulSoup4 is installed
     from bs4 import BeautifulSoup
