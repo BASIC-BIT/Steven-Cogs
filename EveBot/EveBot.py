@@ -46,12 +46,12 @@ class Mycog:
             try:
                 results = soupObject.find(id='results').tfoot.get_text()
                 
-                linkWorked = 0
+                linkWorked = False
                 try:
                     resultsLink = soupObject.select('a[href^="evepraisal.com/e/"]')
-                    linkWorked = 1
+                    linkWorked = True
                 except:
-                    linkWorked = 0
+                    linkWorked = False
 
                 results = results.replace('\n', ' ')
                 results = results.replace('\t', ' ')
