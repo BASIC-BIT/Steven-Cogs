@@ -45,10 +45,10 @@ class Mycog:
                 soupObject = BeautifulSoup(await response.text(), "html.parser")
             try:
                 results = soupObject.find(id='results').tfoot.get_text()
-                link = soupObject.find(id='result_container').siblings[1].siblings[1].a.get_text()
+                resultsLink = soupObject.find(id='result_container').siblings[1].siblings[1].a.get_text()
                 #results = soupObject.body.get_text()
                 results = results.replace('\n', ' ')
-                resultsLink = results.replace('\t', ' ')
+                results = results.replace('\t', ' ')
                 whitelist = set('abcdefghijklmnopqrstuvwxy ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890\.')
                 results = ''.join(filter(whitelist.__contains__, results))
                 for counter in range(1,100):
