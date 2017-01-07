@@ -37,6 +37,9 @@ class StevenCog:
             try:
                 results = soupObject.find(id='results').tfoot.get_text()
                 link = soupObject.find_all('a')[1].get_text()
+                
+                results = results.replace('\n', ' ')
+                results = results.replace('\t', ' ')
 
                 whitelist = set('abcdefghijklmnopqrstuvwxy ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890\.')
                 results = ''.join(filter(whitelist.__contains__, results))
@@ -56,7 +59,7 @@ class StevenCog:
 
     @commands.command(pass_context=True)
     async def vox(self, ctx, args: str):
-        voice_client = self.bot.get_cog('Audio').voice_client(ctx)
+        voice_client = self.bot.get_cog('Audio').voice_client(self.bot.get_server(ctx))
 
         for word in args.split(' '):
             voice_client.audio_player = voice_client.create_ffmpeg_player(
