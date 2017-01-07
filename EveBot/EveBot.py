@@ -56,7 +56,7 @@ class StevenCog:
 
     @commands.command(pass_context=True)
     async def vox(self, ctx, args: str):
-        voice_client = self.bot.get_cog('Audio').voice_client(server)
+        voice_client = self.bot.get_cog('Audio').voice_client(self.bot.get_server(ctx))
 
         for word in args.split(' '):
             voice_client.audio_player = voice_client.create_ffmpeg_player(
