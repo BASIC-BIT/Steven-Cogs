@@ -35,7 +35,7 @@ class Mycog:
                 soupObject = BeautifulSoup(await response.text(), "html.parser")
             try:
                 results = soupObject.find(id='results').tfoot.get_text()
-                link = soupObject.find('a').get_text()
+                link = soupObject.find_all('a')[1].get_text()
 
                 results = results.replace('\n', ' ')
                 results = results.replace('\t', ' ')
