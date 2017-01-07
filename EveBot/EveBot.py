@@ -56,7 +56,7 @@ class StevenCog:
                 await self.bot.say("Failed.")
 
     @commands.command(pass_context=True)
-    async def vox(self, *args: str):
+    async def vox(self, ctx, *args: str):
         for word in args:
             ctx.invoke(self._queue, url='http://ddmers.com/vox/'+word+'.ogg')
 
