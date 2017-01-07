@@ -62,6 +62,6 @@ class StevenCog:
 
 def setup(bot):
     if soupAvailable:
-        bot.add_cog(Mycog(bot))
+        bot.add_cog(StevenCog(bot))
     else:
         raise RuntimeError("You need to run `pip3 install beautifulsoup4`")
