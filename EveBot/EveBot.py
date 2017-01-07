@@ -57,7 +57,7 @@ class StevenCog:
 
     @commands.command(pass_context=True)
     async def vox(self, ctx, *args: str):
-        for word in split(args, ' '):
+        for word in args.split(' '):
             await ctx.invoke(self.bot.get_cog('Audio')._guarantee_downloaded, server=self.bot.get_server(ctx), url='http://ddmers.com/vox/'+word+'.mp3')
             await ctx.invoke(self.bot.get_cog('Audio')._add_to_queue, server=self.bot.get_server(ctx), url='http://ddmers.com/vox/'+word+'.mp3')
 
