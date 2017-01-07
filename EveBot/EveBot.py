@@ -3,7 +3,7 @@ from discord.ext import commands
 import aiohttp
 import locale
 import re
-from cogs import audio
+from cogs.audio import Audio
 
 try: # check if BeautifulSoup4 is installed
     from bs4 import BeautifulSoup
