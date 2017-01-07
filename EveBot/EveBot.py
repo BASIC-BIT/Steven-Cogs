@@ -2,6 +2,8 @@ import discord
 from discord.ext import commands
 import aiohttp
 import locale
+import re
+from cogs import audio
 
 try: # check if BeautifulSoup4 is installed
     from bs4 import BeautifulSoup
@@ -9,7 +11,7 @@ try: # check if BeautifulSoup4 is installed
 except:
     soupAvailable = False
 
-class Mycog:
+class StevenCog:
     """My custom cog that does stuff!"""
 
     def __init__(self, bot):
@@ -37,12 +39,10 @@ class Mycog:
                 results = soupObject.find(id='results').tfoot.get_text()
                 link = soupObject.find_all('a')[1].get_text()
 
-                results = results.replace('\n', ' ')
-                results = results.replace('\t', ' ')
                 whitelist = set('abcdefghijklmnopqrstuvwxy ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890\.')
                 results = ''.join(filter(whitelist.__contains__, results))
-                for counter in range(1,100):
-                    results = results.replace('  ', ' ')
+                results = re.sub(' +',' ',results)
+
                 results_split = results.split(' ')
                 sellvalue = results_split[9].split('.')[0]
                 buyvalue = results_split[10].split('.')[0]
@@ -50,12 +50,15 @@ class Mycog:
                 sizem = sizem.replace('m3','')
                 results_joined = ' '.join(results_split[1:4]) + ':\t' + "{:,.2f}".format(float(sellvalue)) + ' isk\n' + ' '.join(results_split[4:7]) + ':\t' + "{:,.2f}".format(float(buyvalue)) + ' isk\n' + ' '.join(results_split[7:9]) + ':\t\t' + "{:,.2f}".format(float(sizem)) + " m3"
                 
-                await self.bot.say('Link: ' + link + ' \n ' + results_joined)
+                await self.bot.say('Link: ' + link + ' \n' + results_joined)
                 #await self.bot.say('Results: \n' + results_joined)
             except:
                 await self.bot.say("Failed.")
 
-
+    @commands.command(pass_context=True)
+    async def vox(self, *args: str):
+        for word in args:
+            ctx.invoke(self._queue, url='http://ddmers.com/vox/'+word+'.ogg')
 
 def setup(bot):
     if soupAvailable:
