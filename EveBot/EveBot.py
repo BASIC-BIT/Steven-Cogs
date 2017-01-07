@@ -3,7 +3,6 @@ from discord.ext import commands
 import aiohttp
 import locale
 import re
-from cogs.audio import Audio
 
 try: # check if BeautifulSoup4 is installed
     from bs4 import BeautifulSoup
@@ -57,9 +56,11 @@ class StevenCog:
 
     @commands.command(pass_context=True)
     async def vox(self, ctx, args: str):
+        voice_client = self.voice_client(server)
+
         for word in args.split(' '):
-            ctx.invoke(self.bot.get_cog('Audio')._guarantee_downloaded, server=self.bot.get_server(ctx), url='http://ddmers.com/vox/'+word+'.mp3')
-            ctx.invoke(self.bot.get_cog('Audio')._add_to_queue, server=self.bot.get_server(ctx), url='http://ddmers.com/vox/'+word+'.mp3')
+            voice_client.audio_player = voice_client.create_ffmpeg_player(
+                    '/home/website/vox/'+word+'.mp3', use_avconv=0, options='-b:a 64k -bufsize 64k')
 
 def setup(bot):
     if soupAvailable:
