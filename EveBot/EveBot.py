@@ -58,8 +58,7 @@ class StevenCog:
     @commands.command(pass_context=True)
     async def vox(self, ctx, *args: str):
         for word in args:
-            test = Audio()
-            ctx.invoke(test.play, url_or_search_terms='http://ddmers.com/vox/'+word+'.ogg')
+            ctx.invoke(bot.get_cog('Audio').play, url_or_search_terms='http://ddmers.com/vox/'+word+'.ogg')
 
 def setup(bot):
     if soupAvailable:
