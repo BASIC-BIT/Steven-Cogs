@@ -56,9 +56,10 @@ class StevenCog:
                 await self.bot.say("Failed.")
 
     @commands.command(pass_context=True)
-    async def vox(self, ctx, *args: str):
+    async def vox(self, sid, ctx, *args: str):
         for word in args:
-            ctx.invoke(self.bot.get_cog('Audio').play, url_or_search_terms='http://ddmers.com/vox/'+word+'.mp3')
+            await ctx.invoke(self.bot.get_cog('Audio').guarantee_downloaded, server=self.bot.get_server(sid), url='http://ddmers.com/vox/'+word+'.mp3')
+            await ctx.invoke(self.bot.get_cog('Audio')._add_to_queue, server=self.bot.get_server(sid), url='http://ddmers.com/vox/'+word+'.mp3')
 
 def setup(bot):
     if soupAvailable:
